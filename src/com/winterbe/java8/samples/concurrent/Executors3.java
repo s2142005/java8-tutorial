@@ -2,13 +2,7 @@ package com.winterbe.java8.samples.concurrent;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * @author Benjamin Winterberg
@@ -22,6 +16,19 @@ public class Executors3 {
 
 //        test4();
 //        test5();
+    }
+
+    private static void test1() throws InterruptedException {
+        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+
+        Runnable task = () -> System.out.println("Scheduling: " + System.nanoTime());
+        int delay = 3;
+        ScheduledFuture<?> future = executor.schedule(task, delay, TimeUnit.SECONDS);
+
+        TimeUnit.MILLISECONDS.sleep(1337);
+
+        long remainingDelay = future.getDelay(TimeUnit.MILLISECONDS);
+        System.out.printf("Remaining Delay: %sms\n", remainingDelay);
     }
 
     private static void test5() throws InterruptedException, ExecutionException {
@@ -58,8 +65,7 @@ public class Executors3 {
                 .map(future -> {
                     try {
                         return future.get();
-                    }
-                    catch (Exception e) {
+                    } catch (Exception e) {
                         throw new IllegalStateException(e);
                     }
                 })
@@ -75,8 +81,7 @@ public class Executors3 {
             try {
                 TimeUnit.SECONDS.sleep(2);
                 System.out.println("Scheduling: " + System.nanoTime());
-            }
-            catch (InterruptedException e) {
+            } catch (InterruptedException e) {
                 System.err.println("task interrupted");
             }
         };
@@ -90,19 +95,6 @@ public class Executors3 {
         int initialDelay = 0;
         int period = 1;
         executor.scheduleAtFixedRate(task, initialDelay, period, TimeUnit.SECONDS);
-    }
-
-    private static void test1() throws InterruptedException {
-        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-
-        Runnable task = () -> System.out.println("Scheduling: " + System.nanoTime());
-        int delay = 3;
-        ScheduledFuture<?> future = executor.schedule(task, delay, TimeUnit.SECONDS);
-
-        TimeUnit.MILLISECONDS.sleep(1337);
-
-        long remainingDelay = future.getDelay(TimeUnit.MILLISECONDS);
-        System.out.printf("Remaining Delay: %sms\n", remainingDelay);
     }
 
 }

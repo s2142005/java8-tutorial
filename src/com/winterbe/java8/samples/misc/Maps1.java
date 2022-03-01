@@ -17,7 +17,6 @@ public class Maps1 {
 
         map.forEach((id, val) -> System.out.println(val));
 
-
         map.computeIfPresent(3, (num, val) -> val + num);
         System.out.println(map.get(3));             // val33
 
@@ -44,5 +43,4 @@ public class Maps1 {
         map.merge(9, "concat", (value, newValue) -> value.concat(newValue));
         System.out.println(map.get(9));             // val9concat
     }
-
 }

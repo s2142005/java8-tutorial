@@ -31,6 +31,10 @@ public class Synchronized1 {
         System.out.println("   Sync: " + count);
     }
 
+    private static synchronized void incrementSync() {
+        count = count + 1;
+    }
+
     private static void testNonSyncIncrement() {
         count = 0;
 
@@ -42,10 +46,6 @@ public class Synchronized1 {
         ConcurrentUtils.stop(executor);
 
         System.out.println("NonSync: " + count);
-    }
-
-    private static synchronized void incrementSync() {
-        count = count + 1;
     }
 
     private static void increment() {

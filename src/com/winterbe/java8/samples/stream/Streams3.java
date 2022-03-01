@@ -8,9 +8,15 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author Benjamin Winterberg
  */
+@SuppressWarnings("DuplicatedCode")
 public class Streams3 {
 
     public static final int MAX = 1000000;
+
+    public static void main(String[] args) {
+        sortSequential();
+        sortParallel();
+    }
 
     public static void sortSequential() {
         List<String> values = new ArrayList<>(MAX);
@@ -20,14 +26,11 @@ public class Streams3 {
         }
 
         // sequential
-
         long t0 = System.nanoTime();
-
         long count = values.stream().sorted().count();
         System.out.println(count);
 
         long t1 = System.nanoTime();
-
         long millis = TimeUnit.NANOSECONDS.toMillis(t1 - t0);
         System.out.println(String.format("sequential sort took: %d ms", millis));
     }
@@ -40,20 +43,12 @@ public class Streams3 {
         }
 
         // sequential
-
         long t0 = System.nanoTime();
-
         long count = values.parallelStream().sorted().count();
         System.out.println(count);
 
         long t1 = System.nanoTime();
-
         long millis = TimeUnit.NANOSECONDS.toMillis(t1 - t0);
         System.out.println(String.format("parallel sort took: %d ms", millis));
-    }
-
-    public static void main(String[] args) {
-        sortSequential();
-        sortParallel();
     }
 }

@@ -10,7 +10,6 @@ public class Concurrency1 {
 
     public static void main(String[] args) {
         ConcurrentHashMap<Integer, UUID> concurrentHashMap = new ConcurrentHashMap<>();
-
         for (int i = 0; i < 100; i++) {
             concurrentHashMap.put(i, UUID.randomUUID());
         }
@@ -18,7 +17,6 @@ public class Concurrency1 {
         int threshold = 1;
 
         concurrentHashMap.forEachValue(threshold, System.out::println);
-
         concurrentHashMap.forEach((id, uuid) -> {
             if (id % 10 == 0) {
                 System.out.println(String.format("%s: %s", id, uuid));

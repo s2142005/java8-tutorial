@@ -16,50 +16,33 @@ import java.util.function.Supplier;
  */
 public class Lambda3 {
 
-    @FunctionalInterface
-    interface Fun {
-        void foo();
-    }
-
     public static void main(String[] args) throws Exception {
 
         // Predicates
-
         Predicate<String> predicate = (s) -> s.length() > 0;
-
         predicate.test("foo");              // true
         predicate.negate().test("foo");     // false
 
         Predicate<Boolean> nonNull = Objects::nonNull;
         Predicate<Boolean> isNull = Objects::isNull;
-
         Predicate<String> isEmpty = String::isEmpty;
         Predicate<String> isNotEmpty = isEmpty.negate();
 
-
         // Functions
-
         Function<String, Integer> toInteger = Integer::valueOf;
         Function<String, String> backToString = toInteger.andThen(String::valueOf);
 
         backToString.apply("123");     // "123"
 
-
         // Suppliers
-
         Supplier<Person> personSupplier = Person::new;
         personSupplier.get();   // new Person
 
-
         // Consumers
-
         Consumer<Person> greeter = (p) -> System.out.println("Hello, " + p.firstName);
         greeter.accept(new Person("Luke", "Skywalker"));
 
-
-
         // Comparators
-
         Comparator<Person> comparator = (p1, p2) -> p1.firstName.compareTo(p2.firstName);
 
         Person p1 = new Person("John", "Doe");
@@ -68,17 +51,18 @@ public class Lambda3 {
         comparator.compare(p1, p2);             // > 0
         comparator.reversed().compare(p1, p2);  // < 0
 
-
         // Runnables
-
         Runnable runnable = () -> System.out.println(UUID.randomUUID());
         runnable.run();
 
-
         // Callables
-
         Callable<UUID> callable = UUID::randomUUID;
         callable.call();
+    }
+
+    @FunctionalInterface
+    interface Fun {
+        void foo();
     }
 
 }

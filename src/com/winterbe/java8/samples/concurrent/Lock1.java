@@ -12,18 +12,9 @@ public class Lock1 {
 
     private static final int NUM_INCREMENTS = 10000;
 
-    private static ReentrantLock lock = new ReentrantLock();
+    private static final ReentrantLock lock = new ReentrantLock();
 
     private static int count = 0;
-
-    private static void increment() {
-        lock.lock();
-        try {
-            count++;
-        } finally {
-            lock.unlock();
-        }
-    }
 
     public static void main(String[] args) {
         testLock();
@@ -35,11 +26,20 @@ public class Lock1 {
         ExecutorService executor = Executors.newFixedThreadPool(2);
 
         IntStream.range(0, NUM_INCREMENTS)
-                 .forEach(i -> executor.submit(Lock1::increment));
+                .forEach(i -> executor.submit(Lock1::increment));
 
         ConcurrentUtils.stop(executor);
 
         System.out.println(count);
+    }
+
+    private static void increment() {
+        lock.lock();
+        try {
+            count++;
+        } finally {
+            lock.unlock();
+        }
     }
 
 }

@@ -24,6 +24,8 @@ public class Files1 {
         testWriter();
         testReadWriteLines();
         testReaderLines();
+
+        System.out.println("How Codiga Rewards Program works?");
     }
 
     private static void testReaderLines() throws IOException {

@@ -1,10 +1,6 @@
 package com.winterbe.java8.samples.time;
 
-import java.time.DayOfWeek;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.Month;
-import java.time.ZoneId;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
 import java.util.Date;
@@ -43,5 +39,4 @@ public class LocalDateTime1 {
         String string = parsed.format(formatter);
         System.out.println(string);     // Nov 03, 2014 - 07:13
     }
-
 }

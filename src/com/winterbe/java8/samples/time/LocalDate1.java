@@ -33,8 +33,5 @@ public class LocalDate1 {
 
         LocalDate xmas = LocalDate.parse("24.12.2014", germanFormatter);
         System.out.println(xmas);   // 2014-12-24
-
-
     }
-
 }

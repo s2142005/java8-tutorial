@@ -11,7 +11,10 @@ public class Streams1 {
 
     public static void main(String[] args) {
 
+        @SuppressWarnings("DuplicatedCode")
         List<String> stringCollection = new ArrayList<>();
+
+        //noinspection DuplicatedCode
         stringCollection.add("ddd2");
         stringCollection.add("aaa2");
         stringCollection.add("bbb1");

@@ -25,7 +25,6 @@ public class LocalTime1 {
         Instant instant = clock.instant();
         Date legacyDate = Date.from(instant);
 
-
         ZoneId zone1 = ZoneId.of("Europe/Berlin");
         ZoneId zone2 = ZoneId.of("Brazil/East");
 
@@ -38,7 +37,6 @@ public class LocalTime1 {
 
         System.out.println(now1);
         System.out.println(now2);
-
         System.out.println(now1.isBefore(now2));  // false
 
         long hoursBetween = ChronoUnit.HOURS.between(now1, now2);
@@ -46,9 +44,7 @@ public class LocalTime1 {
         System.out.println(hoursBetween);
         System.out.println(minutesBetween);
 
-
         // create time
-
         LocalTime now = LocalTime.now();
         System.out.println(now);
 
@@ -62,11 +58,8 @@ public class LocalTime1 {
 
         LocalTime leetTime = LocalTime.parse("13:37", germanFormatter);
         System.out.println(leetTime);
-
-
+        
         // to legacy date
-
-
     }
 
 }

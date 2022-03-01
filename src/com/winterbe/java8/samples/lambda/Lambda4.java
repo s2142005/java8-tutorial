@@ -9,6 +9,10 @@ public class Lambda4 {
 
     int outerNum;
 
+    public static void main(String[] args) {
+        new Lambda4().testScopes();
+    }
+
     void testScopes() {
         int num = 1;
 
@@ -30,12 +34,7 @@ public class Lambda4 {
         };
 
         stringConverter3.convert(23);
-
         System.out.println(array[0]);
-    }
-
-    public static void main(String[] args) {
-        new Lambda4().testScopes();
     }
 
 }
